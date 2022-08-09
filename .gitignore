@@ -12,3 +12,34 @@ vendor
 .ruby-version
 .terraform.lock.hcl
 terragrunt
+
+# Terraform
+.terraform
+*.tfstate
+*.tfstate.backup
+.plugin-cache
+.terraform.lock.hcl
+
+# Terragrunt
+.terragrunt-cache
+
+# OS X
+.history
+.DS_Store
+
+# IntelliJ
+.idea_modules
+*.iml
+*.iws
+*.ipr
+.idea/
+out/
+
+#ssh
+sshkey
+
+#other
+*.override.hcl
+*.tgpid
+.override.env
+*.log
