@@ -11,6 +11,11 @@ config=$8
 region=$9
 environment=${10}
 state_bucket=${11}
+bucket_suffix=${12}
+account_name=${13}
+account_id=${14}
+aws_profile=${15}
+
 
 if [[ $TG_DISABLE_CONFIRM == "true" ]]
 then
@@ -42,8 +47,18 @@ echo "Platform: $platform"
 echo "Running '$tg_command' command in '$region' Region for '$environment' Environment:"
 echo
 echo Terragrunt State Bucket folder is $state_bucket
-echo $config
-echo $account | jq .
+# echo $config
+# echo $account | jq .
+echo
+echo "Workspace  : $environment"
+echo
+echo "  Account Name : $account_name"
+echo "  Account ID   : $account_id"
+echo "  AWS Profile  : $aws_profile"
+echo "  AWS Region   : $region"
+echo
+echo "  Parameters : "
+echo $account | jq .parameters
 echo
 echo AWS Caller Identity
 echo $aws_caller_identity_arn

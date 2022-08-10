@@ -29,7 +29,8 @@ locals {
   account_name = get_env("TARGET_AWS_ACCOUNT_NAME", local.account.account_name)
   account_id   = get_env("TARGET_AWS_ACCOUNT_ID", local.account.aws_account_id)
   aws_profile  = get_env("TARGET_AWS_PROFILE", local.account.aws_profile)
-  bucket_suffix  = get_env("BUCKET_SUFFIX", local.account.bucket_suffix)
+  bucket_suffix_pre  = get_env("BUCKET_SUFFIX", local.account.bucket_suffix)
+  bucket_suffix = local.bucket_suffix_pre == "dev" || local.bucket_suffix_pre == "" ? "dev-${run_cmd("whoami")}" : local.bucket_suffix_pre
   aws_region   = get_env("TARGET_AWS_REGION", local.default_aws_region)
   assume_profile = lookup(local.account, "parent_profile", local.aws_profile)
 
@@ -47,7 +48,7 @@ locals {
   state_bucket = "tfstate-${local.account_id}-${local.aws_region}-${local.environment}${(local.bucket_suffix != null && local.bucket_suffix != "") ? "-${local.bucket_suffix}" : ""}"
   
   # Confirmation dialog
-  confirm = replace(run_cmd("${get_parent_terragrunt_dir()}/${local.scripts_folder}/confirm_account.sh", local.tgpath, local.hclpath, local.json_acc, local.platform, local.tg_command, local.aws_caller_identity_arn, local.aws_caller_identity_user_id, local.config_vars.config, local.aws_region, local.environment, local.state_bucket),"\n","")
+  confirm = replace(run_cmd("${get_parent_terragrunt_dir()}/${local.scripts_folder}/confirm_account.sh", local.tgpath, local.hclpath, local.json_acc, local.platform, local.tg_command, local.aws_caller_identity_arn, local.aws_caller_identity_user_id, local.config_vars.config, local.aws_region, local.environment, local.state_bucket, local.bucket_suffix, local.account_name, local.account_id, local.aws_profile),"\n","")
   
 }
 

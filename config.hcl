@@ -4,14 +4,14 @@
 locals {
 
   # Config name - Chose from below
-  config = "leia-testing"
+  config = "testing-environment"
 
   # Testing Account
-  leia-testing = {
+  testing-environment = {
     account_name   = "testing"
     aws_account_id = "553688522943"
     aws_profile    = "leia-testing"
-    bucket_suffix  = "" 
+    bucket_suffix  = "dev" 
     
     parameters = {
       DOMAIN         = "testing.dev.leiarenee.io"
