@@ -4,10 +4,10 @@
 locals {
 
   # Config name - Chose from below
-  config = "testing"
+  config = "leia-testing"
 
   # Testing Account
-  testing = {
+  leia-testing = {
     account_name   = "testing"
     aws_account_id = "553688522943"
     aws_profile    = "leia-testing"
