@@ -30,7 +30,7 @@ locals {
   account_id   = get_env("TARGET_AWS_ACCOUNT_ID", local.account.aws_account_id)
   aws_profile  = get_env("TARGET_AWS_PROFILE", local.account.aws_profile)
   bucket_suffix_pre  = get_env("BUCKET_SUFFIX", local.account.bucket_suffix)
-  bucket_suffix = local.bucket_suffix_pre == "dev" || local.bucket_suffix_pre == "" ? "dev-${run_cmd("whoami")}" : local.bucket_suffix_pre
+  bucket_suffix = local.bucket_suffix_pre == "dev" || local.bucket_suffix_pre == "" ? "dev-${run_cmd("--terragrunt-quiet", "whoami")}" : local.bucket_suffix_pre
   aws_region   = get_env("TARGET_AWS_REGION", local.default_aws_region)
   assume_profile = lookup(local.account, "parent_profile", local.aws_profile)
 

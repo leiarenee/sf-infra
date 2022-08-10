@@ -1,6 +1,6 @@
 
 terraform {
-  source = "${get_parent_terragrunt_dir()}/test/main.tf"
+  source = "${get_parent_terragrunt_dir()}//test/test-infra-1"
 }
 
 include {

@@ -16,6 +16,28 @@ account_name=${13}
 account_id=${14}
 aws_profile=${15}
 
+function printout_info(){
+  echo "Platform: $platform"
+  echo "Running '$tg_command' command in '$region' Region for '$environment' Environment:"
+  echo
+  echo Terragrunt State Bucket folder is $state_bucket
+  echo
+  echo "Workspace  : $environment"
+  echo
+  echo "  Account Name : $account_name"
+  echo "  Account ID   : $account_id"
+  echo "  AWS Profile  : $aws_profile"
+  echo "  AWS Region   : $region"
+  echo
+  echo "  Parameters : "
+  echo $account | jq .parameters
+  echo
+  echo AWS Caller Identity
+  echo $aws_caller_identity_arn
+  echo $aws_caller_identity_user_id
+  echo
+}
+
 
 if [[ $TG_DISABLE_CONFIRM == "true" ]]
 then
@@ -33,42 +55,20 @@ new_ppid=$PPID
 
 if [[ $old_ppid == $new_ppid ]]
 then
+  # Runs on every sub process
   echo "Processing $hclpath"
   echo "Parent PID:$new_ppid, Current PID:$$" 
   exit 0
+else
+  # Runs once in parent process
+  echo Main PID: $new_ppid
+  printout_info
 fi
 
-
-profile=$(echo $account | jq -r .aws_profile)
-cluster=$(echo $account | jq -r .parameters.CLUSTER)
-account_id=$(echo $account | jq -r .aws_account_id)
-
-echo "Platform: $platform"
-echo "Running '$tg_command' command in '$region' Region for '$environment' Environment:"
-echo
-echo Terragrunt State Bucket folder is $state_bucket
-# echo $config
-# echo $account | jq .
-echo
-echo "Workspace  : $environment"
-echo
-echo "  Account Name : $account_name"
-echo "  Account ID   : $account_id"
-echo "  AWS Profile  : $aws_profile"
-echo "  AWS Region   : $region"
-echo
-echo "  Parameters : "
-echo $account | jq .parameters
-echo
-echo AWS Caller Identity
-echo $aws_caller_identity_arn
-echo $aws_caller_identity_user_id
-#aws --profile $profile sts get-caller-identity
-echo
-#$tgpath/modules/scripts/refresh-kube-token.sh $profile $cluster $account_id
+# Confirmation
 echo "Do you confirm? (y/n)"
 read confirm
-#confirm=y
+
 if [[ "$confirm" == "y" ]]
 then 
   echo $new_ppid > "$pid_file"
@@ -77,5 +77,6 @@ then
   exit 0
 else
   echo "Process $new_ppid Cancelled."
+  killall -9 terragrunt
   exit 1
 fi

@@ -1,6 +1,6 @@
 
 terraform {
-  source = "${get_parent_terragrunt_dir()}/test/job-resources/outputs.tf"
+  source = "${get_parent_terragrunt_dir()}//test/job-resources"
 }
 
 include {
