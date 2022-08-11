@@ -17,12 +17,16 @@ account_id=${14}
 aws_profile=${15}
 
 function printout_info(){
-  echo "Platform: $platform"
-  echo "Running '$tg_command' command in '$region' Region for '$environment' Environment:"
   echo
+  echo "Platform: $platform"
+  echo "Runner: $BUCKET_SUFFIX"
+  echo
+  echo "Running '$tg_command' command in '$region' Region for '$environment' Environment:"
+  echo 
   echo "Terragrunt : "
   echo
   echo "  State Bucket:  $state_bucket"
+  echo "  Command :" $tg_command
   [ ! -z $RUN_ALL   ] && echo "  Run All  : $RUN_ALL"
   [ ! -z $RUN_MODULE ] && echo "  Run Module  : $RUN_MODULE"
   echo
