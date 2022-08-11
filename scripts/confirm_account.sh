@@ -69,8 +69,7 @@ new_ppid=$PPID
 if [[ $old_ppid == $new_ppid ]]
 then
   # Runs on every sub process
-  echo "Processing $hclpath"
-  echo "Parent PID:$new_ppid, Current PID:$$" 
+  echo "Processing  '$hclpath'  PID:$$" 
   exit 0
 else
   # Runs once in parent process
