@@ -21,6 +21,7 @@ function printout_info(){
   echo "Running '$tg_command' command in '$region' Region for '$environment' Environment:"
   echo
   echo "Terragrunt : "
+  echo
   echo "  State Bucket:  $state_bucket"
   [ ! -z $RUN_ALL   ] && echo "  Run All  : $RUN_ALL"
   [ ! -z $RUN_MODULE ] && echo "  Run Module  : $RUN_MODULE"
@@ -32,6 +33,7 @@ function printout_info(){
   [ ! -z $REPO_ACCOUNT   ] && echo "  Account : $REPO_ACCOUNT"
   [ ! -z $REPO_NAME      ] && echo "  Name    : $REPO_NAME"
   [ ! -z $REPO_REFERENCE ] && echo "  Ref     : $REPO_REFERENCE"
+  [ ! -z $COMMIT_HASH    ] && echo "  Commit  : $COMMIT_HASH"
   echo
   echo "Workspace  : $environment"
   echo
