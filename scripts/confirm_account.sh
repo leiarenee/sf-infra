@@ -19,7 +19,7 @@ aws_profile=${15}
 function printout_info(){
   echo
   echo "Platform: $platform"
-  echo "Runner: $BUCKET_SUFFIX"
+  echo "Runner: $bucket_suffix"
   echo
   echo "Running '$tg_command' command in '$region' Region for '$environment' Environment:"
   echo 
