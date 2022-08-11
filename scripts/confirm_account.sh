@@ -15,18 +15,20 @@ bucket_suffix=${12}
 account_name=${13}
 account_id=${14}
 aws_profile=${15}
-repository=${16}
 
 function printout_info(){
   echo "Platform: $platform"
   echo "Running '$tg_command' command in '$region' Region for '$environment' Environment:"
   echo
-  echo Terragrunt State Bucket folder is $state_bucket
+  echo "Terragrunt : "
+  echo "  State Bucket:  $state_bucket"
+  [ ! -z $RUN_ALL   ] && echo "  Run All  : $RUN_ALL"
+  [ ! -z $RUN_MODULE ] && echo "  Run Module  : $RUN_MODULE"
   echo
   echo "Repository :"
   echo
   [ ! -z $VCS_PROVIDER   ] && echo "  Vendor  : $VCS_PROVIDER"
-  [ ! -z $REPO_TYPE      ] && echo "  Type    : $REPO_REFERENCE"
+  [ ! -z $REPO_TYPE      ] && echo "  Type    : $REPO_TYPE"
   [ ! -z $REPO_ACCOUNT   ] && echo "  Account : $REPO_ACCOUNT"
   [ ! -z $REPO_NAME      ] && echo "  Name    : $REPO_NAME"
   [ ! -z $REPO_REFERENCE ] && echo "  Ref     : $REPO_REFERENCE"
