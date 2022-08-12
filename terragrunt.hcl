@@ -33,6 +33,7 @@ locals {
   bucket_suffix = local.bucket_suffix_pre == "dev" || local.bucket_suffix_pre == "" ? "dev-${run_cmd("--terragrunt-quiet", "whoami")}" : local.bucket_suffix_pre
   aws_region   = get_env("TARGET_AWS_REGION", local.default_aws_region)
   assume_profile = lookup(local.account, "parent_profile", local.aws_profile)
+  repository = get_env("REPOSITORY_FQDN", "local")
 
   common_inputs = {
     # aws_batch_id = get_env("AWS_BATCH_ID")

@@ -17,10 +17,27 @@ account_id=${14}
 aws_profile=${15}
 
 function printout_info(){
-  echo "Platform: $platform"
-  echo "Running '$tg_command' command in '$region' Region for '$environment' Environment:"
   echo
-  echo Terragrunt State Bucket folder is $state_bucket
+  echo "Platform: $platform"
+  echo "Runner: $bucket_suffix"
+  echo
+  echo "Running '$tg_command' command in '$region' Region for '$environment' Environment:"
+  echo 
+  echo "Terragrunt : "
+  echo
+  echo "  State Bucket:  $state_bucket"
+  echo "  Command :" $tg_command
+  [ ! -z $RUN_ALL   ] && echo "  Run All  : $RUN_ALL"
+  [ ! -z $RUN_MODULE ] && echo "  Run Module  : $RUN_MODULE"
+  echo
+  echo "Repository :"
+  echo
+  [ ! -z $VCS_PROVIDER   ] && echo "  Vendor  : $VCS_PROVIDER"
+  [ ! -z $REPO_TYPE      ] && echo "  Type    : $REPO_TYPE"
+  [ ! -z $REPO_ACCOUNT   ] && echo "  Account : $REPO_ACCOUNT"
+  [ ! -z $REPO_NAME      ] && echo "  Name    : $REPO_NAME"
+  [ ! -z $REPO_REFERENCE ] && echo "  Ref     : $REPO_REFERENCE"
+  [ ! -z $COMMIT_HASH    ] && echo "  Commit  : $COMMIT_HASH"
   echo
   echo "Workspace  : $environment"
   echo
@@ -56,8 +73,7 @@ new_ppid=$PPID
 if [[ $old_ppid == $new_ppid ]]
 then
   # Runs on every sub process
-  echo "Processing $hclpath"
-  echo "Parent PID:$new_ppid, Current PID:$$" 
+  echo "Processing  '$hclpath'  PID:$$" 
   exit 0
 else
   # Runs once in parent process
