@@ -58,8 +58,8 @@ function printout_info(){
 
 if [[ $TG_DISABLE_CONFIRM == "true" ]]
 then
- echo "Processing $hclpath"
- exit 0
+  [ $TG_COMMAND == "apply" ] && echo && echo "Processing $hclpath"
+  exit 0
 fi
 
 pid_file="$tgpath/.tgpid"

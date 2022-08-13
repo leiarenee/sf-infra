@@ -11,7 +11,7 @@ locals {
   # Automatically load account-level variables
   config_file = "${get_parent_terragrunt_dir()}/config.hcl"
   config_exists = fileexists(local.config_file)
-  default_values = {aws_region:"eu-west-1",account_name:"my-testing-account",aws_account_id:"01234567890",aws_profile:"testing",bucket_suffix:"dev",parameters:{}}
+  default_values = {aws_region:"eu-west-1",account_name:"my-testing-account",aws_account_id:"01234567890",aws_profile:"testing",bucket_suffix:"dev",parameters:{DOMAIN:"dev.example.com",DNS_ZONE_ID:"",CLUSTER:"my-testing-k8s",CERTIFICATE:""}}
   default_config = {locals:{config:"testing", testing:local.default_values}}
   config = local.config_exists ? read_terragrunt_config(local.config_file) : local.default_config
   config_vars = local.config.locals

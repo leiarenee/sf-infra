@@ -1,5 +1,5 @@
 output "job_resources" {
   value = jsonencode({
-    Server = "[LINK]https://example.com[/LINK]"
+    Server = "https://example.com"
   })
 }

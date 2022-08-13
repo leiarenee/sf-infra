@@ -1,13 +1,16 @@
 #!/bin/bash
 # Calculate progress
 completed_module=$(echo $1 | sed s/$STACK_FOLDER\\\///g)
-
+echo
 echo TERRAGRUNT-PROCESS-COMPLETE $completed_module
-pwd
+#pwd
 echo $completed_module >> $TG_PARRENT_DIR/completed_tasks.log
 completed_tasks=($(cat $TG_PARRENT_DIR/completed_tasks.log))
 module_count=${#completed_tasks[@]}
+echo 
 echo "Completed modules $module_count / $TG_MODULES_COUNT"
+echo ------------------------------------------------------
+echo 
 [ -z $SQS_QUEUE_URL ] && exit 0
 progress=$(($INITIAL_PROGRESS + ($module_count * ($MODULES_FINAL_PROGRESS - $INITIAL_PROGRESS) / $TG_MODULES_COUNT)))
 if [ $progress -gt $MODULES_FINAL_PROGRESS ]

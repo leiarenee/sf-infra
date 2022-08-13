@@ -11,6 +11,6 @@ include {
 inputs = {
 }
 
-dependency "test1" {
-  config_path = "../test-infra-1"
+dependencies {
+  paths = ["../test-infra-1","../test-infra-0"]
 }
