@@ -5,17 +5,18 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 locals {
-  default_aws_region = "eu-west-1"
   scripts_folder = "scripts"
   all_commands=["apply", "plan","destroy","apply-all","plan-all","destroy-all"]
 
   # Automatically load account-level variables
-  
   config_file = "${get_parent_terragrunt_dir()}/config.hcl"
-  config = read_terragrunt_config(local.config_file)
+  config_exists = fileexists(local.config_file)
+  default_values = {aws_region:"eu-west-1",account_name:"my-testing-account",aws_account_id:"01234567890",aws_profile:"testing",bucket_suffix:"dev",parameters:{}}
+  default_config = {locals:{config:"testing", testing:local.default_values}}
+  config = local.config_exists ? read_terragrunt_config(local.config_file) : local.default_config
   config_vars = local.config.locals
   environment = get_env("WORKSPACE_ID", local.config_vars.config)
-  account = lookup(local.config_vars, local.environment, {})
+  account = lookup(local.config_vars, local.environment, local.default_values)
   
   json_acc = jsonencode(local.account)
   tgpath = get_parent_terragrunt_dir()
@@ -31,7 +32,7 @@ locals {
   aws_profile  = get_env("TARGET_AWS_PROFILE", local.account.aws_profile)
   bucket_suffix_pre  = get_env("BUCKET_SUFFIX", local.account.bucket_suffix)
   bucket_suffix = local.bucket_suffix_pre == "dev" || local.bucket_suffix_pre == "" ? "dev-${run_cmd("--terragrunt-quiet", "whoami")}" : local.bucket_suffix_pre
-  aws_region   = get_env("TARGET_AWS_REGION", local.default_aws_region)
+  aws_region   = get_env("TARGET_AWS_REGION", local.account.aws_region)
   assume_profile = lookup(local.account, "parent_profile", local.aws_profile)
   repository = get_env("REPOSITORY_FQDN", "local")
 
