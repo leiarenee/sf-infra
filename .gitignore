@@ -19,6 +19,8 @@ terragrunt
 *.tfstate.backup
 .plugin-cache
 .terraform.lock.hcl
+terraform.hcl
+
 
 # Terragrunt
 .terragrunt-cache
