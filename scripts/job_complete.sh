@@ -1,7 +1,7 @@
 #!/bin/bash
 # Calculate progress
-if [[ $TG_COMMAND_ACTIVE == "apply" ]] 
-then
+# if [[ $TG_COMMAND_ACTIVE == "apply" ]] 
+# then
 echo TG_COMMAND_ACTIVE : $TG_COMMAND_ACTIVE
 completed_module=$(echo $1 | sed s/$STACK_FOLDER\\\///g)
 echo
@@ -29,4 +29,4 @@ echo "Sending SQS Message to $SQS_QUEUE_URL with $SQS_AWS_PROFILE profile."
 aws --profile $SQS_AWS_PROFILE sqs send-message --queue-url "$SQS_QUEUE_URL" --message-group-id "$SQS_MESSAGE_GROUP_ID" \
   --message-body "{\"message\":{\"status\":\"Module completed '$completed_module'\",\"progress\":$progress,\"module\":\"$completed_module\"}}"
 
-fi
+# fi
