@@ -1,6 +1,7 @@
 #!/bin/bash
 # Calculate progress
 [[  $TG_COMMAND_ACTIVE != "apply" ]] && exit 0
+echo TG_COMMAND_ACTIVE : $TG_COMMAND_ACTIVE
 completed_module=$(echo $1 | sed s/$STACK_FOLDER\\\///g)
 echo
 echo TERRAGRUNT-PROCESS-COMPLETE $completed_module
