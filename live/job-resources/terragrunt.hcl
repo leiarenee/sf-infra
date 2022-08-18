@@ -11,7 +11,4 @@ include {
 inputs = {
 }
 
-dependency "test2" {
-  config_path = "../test-infra-2"
-  skip_outputs=true
-}
+
