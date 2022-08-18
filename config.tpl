@@ -1,0 +1,1 @@
+../sf-pipeline/terragrunt/config.tpl
