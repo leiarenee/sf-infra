@@ -1,0 +1,3 @@
+{
+  "RDS_NAME" : "postgres-12-${ENVIRONMENT}"
+}

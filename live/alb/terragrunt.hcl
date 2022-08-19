@@ -1,10 +1,29 @@
-
-terraform {
-  source = "git::https://github.com/terraform-aws-modules/terraform-aws-alb.git//.?ref=v6.10.0"
+locals {
+  global_replacements = jsondecode(file(find_in_parent_folders("replace.json")))
+  local_replacements = jsondecode(file("replace.json"))
+  replacements = merge(local.global_replacements, local.local_replacements)
+  inputs =  jsondecode(file("inputs.tfvars.json"))
+  all_commands = ["apply", "plan","destroy","apply-all","plan-all","destroy-all","init","init-all"]
 }
 
 include {
-  path = find_in_parent_folders()
+ path = find_in_parent_folders()
+}
+
+terraform {
+  source = "git::https://github.com/terraform-aws-modules/terraform-aws-alb.git//.?ref=v6.10.0"
+  extra_arguments extra_args {
+    commands = local.all_commands
+    env_vars = {"k8s_dependency":false}
+  }
+}
+
+inputs = {
+  replace_variables = merge(local.replacements,{})
+
+  vpc_id       = dependency.vpc.outputs.vpc_id
+  subnets      = dependency.vpc.outputs.public_subnets
+  security_groups = [dependency.alb_sg.outputs.security_group_id]
 }
 
 dependency "vpc" {
@@ -15,31 +34,3 @@ dependency "alb_sg" {
   config_path = "../alb-sg"
 }
 
-inputs = {
-  name = "interview-chainlink"
-  
-  load_balancer_type = "application"
-
-  vpc_id       = dependency.vpc.outputs.vpc_id
-  subnets      = dependency.vpc.outputs.public_subnets
-  idle_timeout = 300
-
-  security_groups = [dependency.alb_sg.outputs.security_group_id]
-
-  target_groups = [
-    {
-      name_prefix      = "iw"
-      backend_protocol = "HTTP"
-      backend_port     = 8080
-      target_type      = "instance"
-    }
-  ]
-
-  http_tcp_listeners = [
-    {
-      port               = 80
-      protocol           = "HTTP"
-      target_group_index = 0
-    }
-  ]
-}

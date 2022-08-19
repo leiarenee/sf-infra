@@ -11,7 +11,7 @@ include {
 }
 
 terraform {
-  source = "git::https://github.com/terraform-aws-modules/terraform-aws-security-group.git//.?ref=v4.9.0"
+  source = ".//terraform"
   extra_arguments extra_args {
     commands = ["apply", "plan","destroy","apply-all","plan-all","destroy-all","init","init-all"]
     env_vars = {"k8s_dependency":false}
@@ -20,11 +20,10 @@ terraform {
 
 inputs = {
   replace_variables = merge(local.replacements,{})
+  vpc_id = dependency.vpc.outputs.vpc_id
   
-  vpc_id      = dependency.vpc.outputs.vpc_id
 }
 
 dependency "vpc" {
   config_path = "../vpc"
 }
-
