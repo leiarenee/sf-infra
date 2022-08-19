@@ -37,5 +37,10 @@ inputs = {
 
 dependency "vpc" {
   config_path = "../vpc"
+    mock_outputs = {
+      vpc_cidr_block = "10.0.0.0/16",
+      vpc_id = "known after apply",
+      public_subnets =  ["known after apply"]
+  } 
 }
 
