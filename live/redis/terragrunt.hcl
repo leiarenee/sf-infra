@@ -11,7 +11,7 @@ include {
 }
 
 terraform {
-  source = "git::https://github.com/cloudposse/terraform-aws-elasticache-redis.git//.?ref=0.42.0"
+  source = "https://github.com/cloudposse/terraform-aws-elasticache-redis.git//.?ref=0.42.0"
   extra_arguments extra_args {
     commands = local.all_commands
     env_vars = {"k8s_dependency":false}

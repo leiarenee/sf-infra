@@ -11,7 +11,7 @@ include {
 }
 
 terraform {
-  source = "git::https://github.com/terraform-aws-modules/terraform-aws-rds.git//.?ref=v5.0.3"
+  source = "https://github.com/terraform-aws-modules/terraform-aws-rds.git//.?ref=v5.0.3"
   extra_arguments extra_args {
     commands = local.all_commands
     env_vars = {"k8s_dependency":false}
