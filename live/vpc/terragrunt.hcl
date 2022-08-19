@@ -11,7 +11,8 @@ include {
 }
 
 terraform {
-  source = "git::git@github.com:terraform-aws-modules/terraform-aws-vpc.git//.?ref=v3.14.0"
+  #source = "git::git@github.com:terraform-aws-modules/terraform-aws-vpc.git//.?ref=v3.14.0"
+  source = "https://github.com/terraform-aws-modules/terraform-aws-vpc.git//.?ref=v3.14.0"
   extra_arguments extra_args {
     commands = local.all_commands
     env_vars = {"k8s_dependency":false}
