@@ -14,6 +14,7 @@ variable "subnet_ids" {
   default = []
 }
 
+
 resource "aws_db_subnet_group" "rds_public" {
   name        = var.name
   description = "Public subnets for RDS instance"
