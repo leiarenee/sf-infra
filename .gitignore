@@ -44,6 +44,6 @@ sshkey
 *.override.hcl
 *.tgpid
 *.tgppid
-override.env
+.dev.env
 *.log
 config.hcl

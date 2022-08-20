@@ -1,1 +1,0 @@
-../sf-pipeline/terragrunt/terragrunt.hcl
