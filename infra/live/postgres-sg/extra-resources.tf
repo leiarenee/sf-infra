@@ -16,8 +16,8 @@ variable "subnet_ids" {
 
 
 resource "aws_db_subnet_group" "rds_public" {
-  name        = var.name
-  description = "Public subnets for RDS instance"
+  name        = "db_subnet_group"
+  description = "DB Subnet group for RDS instance"
   subnet_ids  = var.subnet_ids
 }
 
