@@ -1,7 +1,6 @@
 {
   "REPO":"https://github.com/leiarenee/sf-app.git",
   "REPO_SSH":"git@github.com:leiarenee/sf-app.git",
-  "BRANCH":"build",
   "APP_NAME":"client",
   "USE_REMOTE_DOCKER_CACHE":"true",
   "INVALIDATE_REMOTE_CACHE":"false",

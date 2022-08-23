@@ -5,7 +5,7 @@ locals {
   all_commands = ["apply", "plan","destroy","apply-all","plan-all","destroy-all","init","init-all"]
 
   # Get commit hash
-  commit_hash = run_cmd("${get_parent_terragrunt_dir()}/library/scripts/get_commit_hash.sh", local.local_replacements.REPO_SSH, local.local_replacements.BRANCH)
+  commit_hash = run_cmd("${get_parent_terragrunt_dir()}/library/scripts/get_commit_hash.sh", local.local_replacements.REPO_SSH, get_env("REPO_REFERENCE"))
 
   # Read general buildspec.yml file
   buildspec = file(find_in_parent_folders("buildspec.yml"))
