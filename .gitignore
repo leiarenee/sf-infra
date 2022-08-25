@@ -1,29 +1,14 @@
-.*.sw?
-.idea
-terragrunt.iml
-vendor
-.terraform
-.vscode
-*.tfstate
-*.tfstate.backup
-*.out
-.terragrunt-cache
-.bundle
-.ruby-version
-.terraform.lock.hcl
-terragrunt
-
 # Terraform
 .terraform
 *.tfstate
 *.tfstate.backup
 .plugin-cache
 .terraform.lock.hcl
-terraform.hcl
-
 
 # Terragrunt
 .terragrunt-cache
+terragrunt.iml
+terragrunt
 
 # OS X
 .history
@@ -43,7 +28,32 @@ sshkey
 #other
 *.override.hcl
 *.tgpid
-*.tgppid
+user/custom
+*.job
+
+.vscode
+*.code*
+venv
+temp-job
+__pycache__
+.pytest_cache
+archive
 .dev.env
 *.log
-config.hcl
+results.txt
+*.tar
+*.tar.gz
+temp
+*.zip
+custom-test-inputs.json
+test-client-inputs.json
+log.txt
+job-resources.json
+temp-volume
+aggragated-sf-inputs.json
+sf-local.env
+.bundle
+.ruby-version
+.*.sw?
+vendor
+*.out
