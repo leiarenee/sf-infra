@@ -8,7 +8,7 @@ echo Input Template File    : $PIPELINE_SF_TEMPLATE_FILE
 echo "STATE_MACHINE_ARN=$STATE_MACHINE_ARN" >> $GITHUB_ENV
 
 # Try fix plugin cache problem
-[[ $TG_COMMAND == apply ]] && export FORCE_INIT=true
+#[[ $TG_COMMAND == apply ]] && export FORCE_INIT=true
 
 # Variable Substitution
 echo "Variable Substitution"
