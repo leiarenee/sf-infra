@@ -11,7 +11,9 @@ include {
 }
 
 terraform {
-  source = "https://github.com/terraform-aws-modules/terraform-aws-alb.git//.?ref=v6.10.0"
+  source = "tfr:///terraform-aws-modules/alb/aws//.?version=v6.10.0"
+  # https://github.com/terraform-aws-modules/terraform-aws-alb
+  
   extra_arguments extra_args {
     commands = local.all_commands
     env_vars = {"k8s_dependency":false}

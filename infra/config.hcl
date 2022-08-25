@@ -7,7 +7,7 @@ locals {
     account_name   = "testing"
     aws_account_id = "553688522943"
     aws_profile    = "leia-testing"
-    bucket_suffix  = "dev" 
+    bucket_suffix  = "github" 
     
     parameters = {
       ENVIRONMENT    = "testing"
@@ -21,6 +21,9 @@ locals {
       PIPELINE_AWS_ACCOUNT_ID = "377449198785"
       IAM_USER       = "cicd"
       REPO_REFERENCE = "main"
+      TERRAFORM_VERSION = "1.2.7" 
+      TERRAGRUNT_VERSION = "0.38.7" 
+
     }
   }
 

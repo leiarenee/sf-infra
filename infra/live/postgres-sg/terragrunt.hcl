@@ -11,7 +11,9 @@ include {
 }
 
 terraform {
-  source = "https://github.com/terraform-aws-modules/terraform-aws-security-group.git//.?ref=v4.9.0"
+  source = "tfr:///terraform-aws-modules/security-group/aws//.?version=v4.9.0"
+  # https://github.com/terraform-aws-modules/terraform-aws-security-group
+  
   extra_arguments extra_args {
     commands = local.all_commands
     env_vars = {"k8s_dependency":false}
