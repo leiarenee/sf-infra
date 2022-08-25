@@ -139,7 +139,9 @@ jobs:
           # GITHUB
           # GITHUB_CONTEXT: ${{ toJson(github) }} 
 
-        run: ./sf-run/sf-execute.sh
+        run: |
+          [[ $TG_COMMAND == apply ]] && export FORCE_INIT=true
+          ./sf-run/sf-execute.sh
       - name: Trace Target Deploy Logs 
         shell: bash
         run: ./sf-run/sqs-poll.sh
