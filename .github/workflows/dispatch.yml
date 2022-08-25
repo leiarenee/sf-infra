@@ -140,7 +140,7 @@ jobs:
           # GITHUB_CONTEXT: ${{ toJson(github) }} 
 
         run: |
-          [[ $TG_COMMAND == apply ]] && export FORCE_INIT=true
+          [[ $TG_COMMAND == apply ]] && echo "FORCE_INIT=true" >> $GITHUB_ENV
           ./sf-run/sf-execute.sh
       - name: Trace Target Deploy Logs 
         shell: bash
