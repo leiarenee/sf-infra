@@ -78,7 +78,7 @@ jobs:
           STACK_FOLDER: ${{ github.event.inputs.stackFolder }}
           BUCKET_SUFFIX: github
           INTERACTIVE: false
-          FORCE_INIT: false
+          FORCE_INIT: true
           COMPACT_WARNINGS: true
           COMPACT_STDOUT: true
           LOG_LEVEL: info
@@ -139,9 +139,7 @@ jobs:
           # GITHUB
           # GITHUB_CONTEXT: ${{ toJson(github) }} 
 
-        run: |
-          [[ $TG_COMMAND == apply ]] && echo "FORCE_INIT=true" >> $GITHUB_ENV
-          ./sf-run/sf-execute.sh
+        run: ./sf-run/sf-execute.sh
       - name: Trace Target Deploy Logs 
         shell: bash
         run: ./sf-run/sqs-poll.sh
