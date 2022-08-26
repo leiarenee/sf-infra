@@ -29,10 +29,17 @@ inputs = {
 
 dependency "k8s-cluster" {
   config_path = "../../k8s-cluster"
+  skip_outputs = true
 }
 
 dependency "namespace" {
   config_path = "../namespace"
+  skip_outputs = true
+}
+
+dependency "autoscaler" {
+  config_path = "../auto-scaler"
+  skip_outputs = true
 }
 
 dependency "build-client" {

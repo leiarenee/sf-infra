@@ -12,7 +12,6 @@ include {
 
 terraform {
   source = ".//terraform"
-
   extra_arguments extra_args {
     commands = local.all_commands
     env_vars = {"k8s_dependency":true}
@@ -20,28 +19,15 @@ terraform {
 }
 
 inputs = {
-  module_enabled = true
-  replace_variables             = merge(local.replacements,{
-    IMAGE_URL="${dependency.build-server.outputs.repository_url}:${local.local_replacements.IMAGE_TAG}"
-    }
-  )
+  replace_variables = merge(local.replacements,{})
+
 }
 
 dependency "k8s-cluster" {
   config_path = "../../k8s-cluster"
-  skip_outputs = true
 }
 
 dependency "namespace" {
   config_path = "../namespace"
-  skip_outputs = true
 }
 
-dependency "autoscaler" {
-  config_path = "../auto-scaler"
-  skip_outputs = true
-}
-
-dependency "build-server" {
-  config_path = "../../build-server"
-}
