@@ -11,7 +11,7 @@ include {
 }
 
 terraform {
-  source = "tfr:///terraform-aws-modules/security-group/aws//.?version=v4.9.0"
+  source = "tfr:///terraform-aws-modules/security-group/aws//.?version=4.9.0"
   # https://github.com/terraform-aws-modules/terraform-aws-security-group
   
   extra_arguments extra_args {
@@ -28,8 +28,5 @@ inputs = {
 
 dependency "vpc" {
   config_path = "../vpc"
-    mock_outputs = {
-      vpc_id = "known after apply"
-  } 
 }
 

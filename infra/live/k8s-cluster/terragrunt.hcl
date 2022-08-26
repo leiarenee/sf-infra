@@ -11,7 +11,7 @@ include {
 }
 
 terraform {
-  source = "tfr:///terraform-aws-modules/eks/aws//.?version=v18.28.0"
+  source = "tfr:///terraform-aws-modules/eks/aws//.?version=18.28.0"
   # https://github.com/terraform-aws-modules/terraform-aws-eks
   
   extra_arguments extra_args {
@@ -45,22 +45,12 @@ inputs = {
 
 dependency "vpc" {
   config_path = "../vpc"
-    mock_outputs = {
-      vpc_id = "known after apply",
-      private_subnets =  ["known after apply"]
-  } 
 }
 
 dependency "sg" {
   config_path = "../k8s-sg"
-    mock_outputs = {
-      id = "known after apply"
-  } 
 }
 
 dependency "kms" {
   config_path = "../k8s-kms"
-    mock_outputs = {
-      arn = "known after apply"
-  } 
 }

@@ -11,7 +11,7 @@ include {
 }
 
 terraform {
-  source = "tfr:///terraform-aws-modules/alb/aws//.?version=v6.10.0"
+  source = "tfr:///terraform-aws-modules/alb/aws//.?version=6.10.0"
   # https://github.com/terraform-aws-modules/terraform-aws-alb
   
   extra_arguments extra_args {
@@ -30,16 +30,9 @@ inputs = {
 
 dependency "vpc" {
   config_path = "../vpc"
-    mock_outputs = {
-      vpc_id = "known after apply"
-      public_subnets = ["known after apply"]
-  } 
 }
 
 dependency "alb_sg" {
   config_path = "../alb-sg"
-    mock_outputs = {
-      security_group_id = "known after apply"
-  } 
 }
 
