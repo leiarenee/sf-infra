@@ -1,3 +1,4 @@
+# Deployment Set
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -33,8 +34,36 @@ spec:
         env:
         - name: PYTHONPATH
           value: "src"
-
-
-
-
+---
+# Internal Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${APP_NAME}-internal
+  labels:
+    service: ${APP_NAME}
+spec:
+  ports:
+  - protocol: TCP
+    port:  ${INTERNAL_PORT}
+    targetPort: ${INTERNAL_PORT}
+  selector:
+    app: ${APP_NAME}
+  type: ClusterIP
+---
+# External Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${APP_NAME}-external
+  labels:
+    service: ${APP_NAME}
+spec:
+  ports:
+  - protocol: TCP
+    port: ${EXTERNAL_PORT}
+    targetPort: ${CONTAINER_PORT}
+  selector:
+    app: ${APP_NAME}
+  type: LoadBalancer
 

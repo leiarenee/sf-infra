@@ -1,8 +1,9 @@
 {
   "NAMESPACE":"app",
-  "APP_NAME":"client",
+  "APP_NAME":"server",
   "CONTAINER_PORT":8000,
   "EXTERNAL_PORT":80,
+  "INTERNAL_PORT":8080,
   "HEALTH_CHECK_TIMEOUT":60,
   "REPLICAS":1,
   "LABEL_GROUP":"web",
@@ -12,4 +13,5 @@
   "CPU_LIMIT":"500m",
   "MEMORY_LIMIT":"1000M",
   "IMAGE_TAG":"latest"
+  
 }

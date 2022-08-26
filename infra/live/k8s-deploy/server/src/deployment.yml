@@ -1,0 +1,69 @@
+# Deployment Set
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${APP_NAME}
+  labels:
+    app: ${APP_NAME}
+spec:
+  selector:
+    matchLabels:
+      app: ${APP_NAME}
+  replicas: ${REPLICAS}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ${APP_NAME}
+        group: ${LABEL_GROUP}
+    spec:
+      containers:
+      - name: ${APP_NAME}
+        image: ${IMAGE_URL}
+        imagePullPolicy: ${IMAGE_PULL_POLICY}
+        ports:
+        - containerPort: ${CONTAINER_PORT}
+        resources:
+            requests:
+              cpu: ${CPU_REQUEST}
+              memory: ${MEMORY_REQUEST}
+            limits:
+              cpu: ${CPU_LIMIT}
+              memory: ${MEMORY_LIMIT}
+        env:
+        - name: PYTHONPATH
+          value: "src"
+---
+# Internal Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${APP_NAME}-internal
+  labels:
+    service: ${APP_NAME}
+spec:
+  ports:
+  - protocol: TCP
+    port:  ${INTERNAL_PORT}
+    targetPort: ${INTERNAL_PORT}
+  selector:
+    app: ${APP_NAME}
+  type: ClusterIP
+---
+# External Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${APP_NAME}-external
+  labels:
+    service: ${APP_NAME}
+spec:
+  ports:
+  - protocol: TCP
+    port: ${EXTERNAL_PORT}
+    targetPort: ${CONTAINER_PORT}
+  selector:
+    app: ${APP_NAME}
+  type: LoadBalancer
+
