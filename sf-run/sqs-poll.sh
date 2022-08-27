@@ -5,8 +5,16 @@ log_file=log.txt
 # Extract repository root
 repo_root=$(git rev-parse --show-toplevel) 
 
-# Source Colors
-source $repo_root/infra/library/scripts/colors.sh
+# colors
+TERM=xterm-256color
+NC=`tput -T $TERM sgr0`
+RED=`tput -T $TERM setaf 1`
+GREEN=`tput -T $TERM setaf 2`
+YELLOW=`tput -T $TERM setaf 3`
+BLUE=`tput -T $TERM setaf 4`
+MAGENTA=`tput -T $TERM setaf 5`
+CYAN=`tput -T $TERM setaf 6`
+WHITE=`tput -T $TERM setaf 7`
 
 # ------------ Poll Sqs Status Messages and Log Updates ---------------------------------------------
 
