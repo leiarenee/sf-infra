@@ -90,7 +90,7 @@ init_wait_time=5
 
 # SQS
 echo "Waiting 5 Seconds for initialization of State Machine..."
-sleep 5
+sleep 10
 
 cnt=0
 echo "Polling..."
