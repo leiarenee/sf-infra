@@ -57,3 +57,4 @@ sf-local.env
 .*.sw?
 vendor
 *.out
+github.env
