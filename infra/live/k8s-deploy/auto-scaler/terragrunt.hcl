@@ -19,6 +19,7 @@ include {
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
+  lineage = dependency.init.outputs.lineage
  cluster_id = dependency.cluster.outputs.cluster_id
 #  kubernetes_resources_labels = dependency.cluster.outputs.tags
 worker_iam_role_name = dependency.cluster.outputs.eks_managed_node_groups.green.iam_role_name
@@ -28,4 +29,8 @@ worker_iam_role_name = dependency.cluster.outputs.eks_managed_node_groups.green.
 dependency "cluster" {
   config_path = "../../k8s-cluster"
 
+}
+
+dependency "init" {
+  config_path = "../../init"
 }

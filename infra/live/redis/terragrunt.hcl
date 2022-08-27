@@ -21,6 +21,7 @@ terraform {
 }
 
 inputs = {
+  lineage = dependency.init.outputs.lineage
   replace_variables = merge(local.replacements,{})
 
   availability_zones         = dependency.vpc.outputs.azs
@@ -33,3 +34,6 @@ dependency "vpc" {
   config_path = "../vpc"
 }
 
+dependency "init" {
+  config_path = "../init"
+}

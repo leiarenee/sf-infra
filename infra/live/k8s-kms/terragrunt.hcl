@@ -20,6 +20,10 @@ terraform {
 
 inputs = {
   replace_variables = merge(local.replacements,{})
+  lineage = dependency.init.outputs.lineage
 
 }
 
+dependency "init" {
+  config_path = "../init"
+}

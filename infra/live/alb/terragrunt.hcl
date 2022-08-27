@@ -22,6 +22,7 @@ terraform {
 
 inputs = {
   replace_variables = merge(local.replacements,{})
+  lineage = dependency.init.outputs.lineage
 
   vpc_id       = dependency.vpc.outputs.vpc_id
   subnets      = dependency.vpc.outputs.public_subnets
@@ -34,5 +35,9 @@ dependency "vpc" {
 
 dependency "alb_sg" {
   config_path = "../alb-sg"
+}
+
+dependency "init" {
+  config_path = "../init"
 }
 

@@ -20,6 +20,7 @@ terraform {
 
 inputs = {
   replace_variables = merge(local.replacements,{})
+  lineage = dependency.init.outputs.lineage
 
 }
 
@@ -33,4 +34,6 @@ dependency "auto-scaler" {
   skip_outputs = true
 }
 
-
+dependency "init" {
+  config_path = "../../init"
+}

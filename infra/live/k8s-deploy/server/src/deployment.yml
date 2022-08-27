@@ -33,11 +33,13 @@ spec:
               memory: ${MEMORY_LIMIT}
         env:
         - name: TYPEORM_HOST
-          value: postgres-12-testing.cys9c1gfx6hp.eu-west-1.rds.amazonaws.com:5432
+          value: postgres.testing.dev.leiarenee.io
         - name: REDIS_HOST
-          value: master.redis-testing-testing-prod-redis.sbn4km.euw1.cache.amazonaws.com
+          value: redis.testing.dev.leiarenee.io
         - name: REDIS_PASSWORD
           value: redispass
+        - name: TYPEORM_PASSWORD
+          value: pgpass12
         
 ---
 # Internal Service

@@ -20,6 +20,7 @@ terraform {
 
 inputs = {
   replace_variables = merge(local.replacements,{})
+  lineage = dependency.init.outputs.lineage
 
   vpc_id = dependency.vpc.outputs.vpc_id
   private_subnets = dependency.vpc.outputs.private_subnets
@@ -34,6 +35,10 @@ inputs = {
   alb_security_group = dependency.alb_sg.outputs.security_group_id
   k8s_kms_arn = dependency.kms.outputs.arn
   
+}
+
+dependency "init" {
+  config_path = "../init"
 }
 
 dependency "vpc" {

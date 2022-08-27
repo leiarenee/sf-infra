@@ -25,9 +25,13 @@ include {
 
 inputs = {  
   replace_variables             = merge(local.replacements,{COMMIT_HASH=local.commit_hash})
+  lineage = dependency.init.outputs.lineage
+  
   buildspec                     = local.buildspec
   
 }
 
-
+dependency "init" {
+  config_path = "../init"
+}
 

@@ -19,6 +19,7 @@ terraform {
 }
 
 inputs = {
+  lineage = dependency.init.outputs.lineage
   replace_variables = merge(local.replacements,{})
 
 }
@@ -31,3 +32,6 @@ dependency "namespace" {
   config_path = "../namespace"
 }
 
+dependency "init" {
+  config_path = "../../init"
+}

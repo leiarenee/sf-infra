@@ -19,6 +19,7 @@ terraform {
 }
 
 inputs = {
+  lineage = dependency.init.outputs.lineage
   replace_variables = merge(local.replacements,{})
   vpc_id = dependency.vpc.outputs.vpc_id
   
@@ -26,4 +27,8 @@ inputs = {
 
 dependency "vpc" {
   config_path = "../vpc"
+}
+
+dependency "init" {
+  config_path = "../init"
 }

@@ -26,6 +26,7 @@ terraform {
 
 inputs = {
   replace_variables = merge(local.replacements,{})
+  lineage = dependency.init.outputs.lineage
   
   # VPC
   vpc_id     = dependency.vpc.outputs.vpc_id,
@@ -53,4 +54,8 @@ dependency "sg" {
 
 dependency "kms" {
   config_path = "../k8s-kms"
+}
+
+dependency "init" {
+  config_path = "../init"
 }

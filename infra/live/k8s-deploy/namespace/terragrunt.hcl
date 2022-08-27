@@ -21,6 +21,7 @@ include {
 }
 
 inputs = {
+  lineage = dependency.init.outputs.lineage
   module_enabled = true
   replace_variables             = merge(local.replacements,{
     }
@@ -29,4 +30,8 @@ inputs = {
 
 dependencies {
   paths = ["../../k8s-cluster"]
+}
+
+dependency "init" {
+  config_path = "../../init"
 }

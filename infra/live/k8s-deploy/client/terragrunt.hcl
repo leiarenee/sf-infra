@@ -20,6 +20,7 @@ terraform {
 }
 
 inputs = {
+  lineage = dependency.init.outputs.lineage
   module_enabled = true
   replace_variables             = merge(local.replacements,{
     IMAGE_URL="${dependency.build-client.outputs.repository_url}:${local.local_replacements.IMAGE_TAG}"
@@ -44,4 +45,8 @@ dependency "autoscaler" {
 
 dependency "build-client" {
   config_path = "../../build-client"
+}
+
+dependency "init" {
+  config_path = "../../init"
 }

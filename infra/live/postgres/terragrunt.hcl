@@ -21,6 +21,7 @@ terraform {
 }
 
 inputs = {
+  lineage = dependency.init.outputs.lineage
   replace_variables = merge(local.replacements,{})
 
   password                  = dependency.postgres_password.outputs.password
@@ -40,4 +41,8 @@ dependency "postgres_password" {
 
 dependency "postgres_sg" {
   config_path = "../postgres-sg"
+}
+
+dependency "init" {
+  config_path = "../init"
 }
