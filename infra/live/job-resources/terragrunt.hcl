@@ -34,8 +34,6 @@ inputs = {
   alb_security_group = dependency.alb_sg.outputs.security_group_id
   k8s_kms_arn = dependency.kms.outputs.arn
   
-
-
 }
 
 dependency "vpc" {
@@ -72,4 +70,20 @@ dependency "kms" {
 
 dependency "redis" {
   config_path = "../redis"
+}
+
+dependency "build-client" {
+  config_path = "../build-client"
+}
+
+dependency "build-server" {
+  config_path = "../build-server"
+}
+
+dependency "client" {
+  config_path = "../k8s-deploy/client"
+}
+
+dependency "server" {
+  config_path = "../k8s-deploy/client"
 }
