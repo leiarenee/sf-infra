@@ -13,7 +13,7 @@ on:
         default: eu-west-1
       repoReference:
         description: Repository Reference - [branch|tag|hash]   
-        default: ${{GITHUB_REF}}
+        default: ${GITHUB_REF}
       runAll:
         description: Terragrunt run-all
         default: true 
