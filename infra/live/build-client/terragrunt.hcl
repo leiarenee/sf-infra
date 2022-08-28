@@ -35,7 +35,7 @@ inputs = {
   buildspec                     = local.build_spec
 
   # Definitions
-  name = "build-client-${dependency.init.outputs.lineage}"
+  name = "build-${local.local_replacements.APP_NAME}-${dependency.init.outputs.lineage}"
   tags = {
     lineage = dependency.init.outputs.lineage
   }

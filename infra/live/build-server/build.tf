@@ -70,3 +70,4 @@ variable "aws_profile" {
 output "image_repository_url" {
   value = "${var.aws_account_id}.dkr.ecr.${var.aws_region}.amazonaws.com/${var.image_repo_name}:${var.image_tag}"
 }
+
