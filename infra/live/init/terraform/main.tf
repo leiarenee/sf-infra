@@ -3,6 +3,6 @@ resource "random_pet" "this" {
 }
 
 output "lineage" {
-  value = random_pet.this
+  value = random_pet.this.id
 }
 
