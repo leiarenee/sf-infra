@@ -81,6 +81,7 @@ jobs:
       stackFolder: ${{ inputs.stackFolder }}
       runModule: ${{ inputs.runModule }}
       ttlDuration: ${{ inputs.ttlDuration }}
+      repoReference: ${{ github.ref }}
     secrets: inherit
   
 
