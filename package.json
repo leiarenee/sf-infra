@@ -1,0 +1,7 @@
+{
+  "name": "infrastructure",
+  "version": "0.1.4",
+  "main": "infra/live/terragrunt run-all apply",
+  "license": "MIT",
+  "author": "Leia Renée"
+}

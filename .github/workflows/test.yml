@@ -1,0 +1,19 @@
+name: test
+on: push
+jobs:
+  version:  # https://github.com/marketplace/actions/automated-version-bump
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name:  'Automated Version Bump'
+      uses:  'phips28/gh-action-bump-version@master'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PACKAGEJSON_DIR: server
+      with:
+        minor-wording:  'add,Adds,new'
+        major-wording:  'MAJOR,cut-major'
+        patch-wording:  'patch,fixes'     # Providing patch-wording will override commits
+        rc-wording:     'RELEASE,alpha'
+        default: patch # defaulting to a patch bump.
+        tag-prefix: 'v'
