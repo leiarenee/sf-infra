@@ -7,11 +7,11 @@ on:
         default: testing
         type: choice
         options:
-        - Testing
-        - Staging
-        - Production-1
-        - Production-2
-        - Leia-Renee
+        - testing
+        - staging
+        - production-1
+        - production-2
+        - leia-renee
       targetAwsAccountId:
         description: Target AWS Account Id   
         default: 553688522943
