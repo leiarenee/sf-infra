@@ -40,6 +40,8 @@ spec:
           value: redispass
         - name: TYPEORM_PASSWORD
           value: pgpass12
+        - name: TYPEORM_USERNAME
+          value: postgres
         
 ---
 # Internal Service
