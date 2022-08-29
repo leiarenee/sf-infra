@@ -13,7 +13,7 @@ resource "aws_secretsmanager_secret_version" "postgres" {
 }
 
 output "password" {
-  value     = "pgpass12" # random_password.this.result
+  value     = random_password.this.result
   sensitive = true
 }
 
