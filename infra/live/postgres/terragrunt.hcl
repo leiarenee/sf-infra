@@ -24,7 +24,7 @@ inputs = {
   lineage = dependency.init.outputs.lineage
   replace_variables = merge(local.replacements,{})
 
-  #password                  = dependency.postgres_password.outputs.password
+  password                  = dependency.postgres_password.outputs.password
   vpc_security_group_ids    = [dependency.postgres_sg.outputs.security_group_id]
   db_subnet_group_name      = dependency.postgres_sg.outputs.db_subnet_group_name
   
