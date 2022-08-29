@@ -7,11 +7,11 @@ on:
         default: testing
         type: choice
         options:
-        - Testing
-        - Staging
-        - Production-1
-        - Production-2
-        - Leia-Renee
+        - testing
+        - staging
+        - production-1
+        - production-2
+        - leia-renee
       targetAwsAccountId:
         description: Target AWS Account Id   
         default: 553688522943
@@ -63,7 +63,7 @@ on:
         - test
       runModule:
         description: Terragrunt Module Folder - Choose from https://github.com/leiarenee/sf-infra/tree/main/infra/live
-        default:
+        default: 
       ttlDuration:
         description: Time to Live in minutes 
         default: 30
@@ -81,6 +81,8 @@ jobs:
       stackFolder: ${{ inputs.stackFolder }}
       runModule: ${{ inputs.runModule }}
       ttlDuration: ${{ inputs.ttlDuration }}
+      repoReference: ${{ github.ref_name }}
+
     secrets: inherit
   
 

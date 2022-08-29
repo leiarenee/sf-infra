@@ -23,7 +23,7 @@ inputs = {
   lineage = dependency.init.outputs.lineage
   module_enabled = true
   replace_variables             = merge(local.replacements,{
-    IMAGE_URL="${dependency.build-client.outputs.repository_url}:${local.local_replacements.IMAGE_TAG}"
+    IMAGE_URL= dependency.build-client.outputs.image_repository_url
     }
   )
 }
