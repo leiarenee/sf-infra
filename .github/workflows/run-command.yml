@@ -58,7 +58,7 @@ on:
 
 jobs:
   execute-step-functions:
-    uses: ./.github/workflows/execute-sf.yml
+    uses: leiarenee/sf-pipeline/.github/workflows/execute-sf.yml@chatops
     with:
       workspaceId: ${{ inputs.workspaceId }}
       targetAwsRegion: ${{ inputs.targetAwsRegion }}
