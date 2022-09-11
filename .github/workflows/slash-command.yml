@@ -1,0 +1,39 @@
+name: Slash Command Dispatch
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  slashCommandDispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract PR Branch
+        if: ${{ github.event.issue.pull_request }}
+        #https://github.com/marketplace/actions/pull-request-comment-branch
+        uses: xt0rted/pull-request-comment-branch@v1 
+        id: comment-branch
+      - name: Slash Command Dispatch
+        id: dispatch
+        if: ${{ github.event.issue.pull_request }}
+        uses: peter-evans/slash-command-dispatch@v3
+        env:
+          REPO_PIPELINE: sf-pipeline
+        with:
+          token: ${{ secrets.PAT_WORKFLOW }}
+          commands: |
+            run
+          dispatch-type: workflow
+          issue-type: pull-request
+          static-args: |
+            repository=${{ github.repository_owner }}/${{ env.REPO_PIPELINE}}
+            comment-id=${{ github.event.comment.id }}
+            repoReference=${{ steps.comment-branch.outputs.head_ref }}
+            ref=${{ steps.comment-branch.outputs.head_ref }}
+            issue-number=${{ github.event.issue.number }}
+      - name: Edit comment with error message
+        if: steps.dispatch.outputs.error-message
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          body: |
+            > ${{ steps.dispatch.outputs.error-message }}
+          
