@@ -1,0 +1,77 @@
+name: Run Command
+
+on:
+  workflow_dispatch:
+    inputs:
+      workspaceId:
+        description: Workspace Id (Changes tfstate bucket)    
+        default: testing
+        type: choice
+        options:
+        - testing
+        - staging
+        - production-1
+        - production-2
+        - leia-renee
+      targetAwsRegion:
+        description: Target AWS Region     
+        default: eu-west-1
+        type: choice
+        options:
+        - eu-central-1
+        - eu-west-1
+        - eu-west-2
+        - eu-west-3
+        - eu-south-1
+        - eu-north-1
+        - us-east-1
+        - us-east-2
+        - us-west-1
+        - us-west-2
+      tgCommand: 
+        description: Terragrunt command
+        default: plan
+        type: choice
+        options:
+        - validate
+        - plan
+        - apply
+        - destroy
+        - show
+        - output
+      stack:
+        description: Stack Folder
+        default: light//
+        type: string
+      ttlDuration:
+        description: Time to Live in minutes 
+        default: 30
+      comment-id:
+        description: 'The comment-id of the slash command'
+      repository:
+        description: 'The repository from which the slash command was dispatched'
+      repoReference:
+        description: 'Branch Name'
+      issue-number:
+        description: 'PR Number'
+
+
+jobs:
+  execute-step-functions:
+    uses: ./.github/workflows/execute-sf.yml
+    with:
+      workspaceId: ${{ inputs.workspaceId }}
+      targetAwsRegion: ${{ inputs.targetAwsRegion }}
+      tgCommand: ${{ inputs.tgCommand }}
+      stack: ${{ inputs.stack }}
+      ttlDuration: ${{ inputs.ttlDuration }}
+      repoReference: ${{ inputs.repoReference || github.ref_name }} 
+      repository: ${{ inputs.repository }}
+      comment-id: ${{ inputs.comment-id }}
+      issue-number: ${{ inputs.issue-number }}
+
+    secrets: inherit
+  
+
+
+
