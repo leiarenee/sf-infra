@@ -1,0 +1,8 @@
+{
+  "APP_NAME":"client",
+  "APP_REPO_NAME":"sf-app",
+  "APP_REPO_REF":"${REPO_REFERENCE}",
+  "USE_REMOTE_DOCKER_CACHE":"true",
+  "INVALIDATE_REMOTE_CACHE":"false",
+  "RUN_AUTO_BUILD":"true"
+}
