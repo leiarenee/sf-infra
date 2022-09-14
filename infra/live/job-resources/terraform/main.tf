@@ -1,8 +1,8 @@
 locals {
   job_outputs = {
     vpc_id = var.vpc_id
-    private_subnets = var.private_subnets
-    public_subnets = var.public_subnets
+    private_subnets = jsondecode(var.private_subnets)
+    public_subnets = jsondecode(var.public_subnets)
     cluster_id = var.cluster_id
     cluster_endpoint = var.cluster_endpoint
     redis_enpoint = var.redis_enpoint
