@@ -4,6 +4,3 @@ output "job_resources" {
   })
 }
 
-output "vpc_id" {value=local.job_outputs.vpc_id}
-output "private_subnets" {value=local.job_outputs.private_subnets}
-output "public_subnets" {value=local.job_outputs.public_subnets}
